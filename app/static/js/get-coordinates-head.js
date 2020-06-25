@@ -36,6 +36,8 @@ function GetCoordinates(e)
     }
     PosX = PosX - ImgPos[0];
     PosY = PosY - ImgPos[1];
+
     document.getElementById("x").innerHTML = PosX;
     document.getElementById("y").innerHTML = PosY;
+
 }

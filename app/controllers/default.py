@@ -1,10 +1,13 @@
 from app import app
-from flask import render_template
+from flask import render_template, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+import os
+from app.controllers.processing import allowed_file
 #from processing import crl, img_click, ratio, script
 
 
 @app.route("/", methods=["GET","POST"])
-def index():    
+def index():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -25,5 +28,8 @@ def index():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
+    x1 = request.form.get("x","")
+    y1 = request.form.get("y","")
+    logging.info("oi")
     return render_template('result.html')
 

@@ -30,6 +30,6 @@ def index():
 def uploaded_file(filename):
     x1 = request.form.get("x","")
     y1 = request.form.get("y","")
-    logging.info("oi")
+
     return render_template('result.html')
 

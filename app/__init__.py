@@ -8,5 +8,5 @@ app.secret_key = 's3cr3t'
 app.config["DEBUG"] = True
 
 
-from app.controllers import default
+from app.controllers import default, processing
 

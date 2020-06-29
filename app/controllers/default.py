@@ -26,10 +26,16 @@ def index():
                                     filename=filename))
     return render_template('index.html')
 
-@app.route('/uploads/<filename>')
+@app.route('/uploads/<filename>', methods=["GET","POST"])
 def uploaded_file(filename):
-    x1 = request.form.get("x","")
-    y1 = request.form.get("y","")
+
+    if request.method == 'POST':
+        x = request.form['x1']
+        return redirect(url_for('process', x=x))
 
     return render_template('result.html')
+
+@app.route('/process/<x>', methods=["GET","POST"])
+def process(x):
+    return 'Hello World {}'.format(x)
 

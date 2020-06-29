@@ -40,4 +40,7 @@ function GetCoordinates(e)
     document.getElementById("x").innerHTML = PosX;
     document.getElementById("y").innerHTML = PosY;
 
+    document.getElementById("x1").setAttribute("value",PosX);
+    document.getElementById("y1").setAttribute("value",PosY);
+
 }

@@ -1,12 +1,13 @@
 from app import app
-from flask import render_template, request,  flash, redirect, url_for, send_from_directory
+from flask import render_template, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 from app.controllers.processing import allowed_file
+#from processing import crl, img_click, ratio, script
 
 
 @app.route("/", methods=["GET","POST"])
-def index():    
+def index():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -20,12 +21,15 @@ def index():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            up=file.save(os.path.join(app.config['UPLOAD_FOLDER'], "output.png"))
             return redirect(url_for('uploaded_file',
                                     filename=filename))
     return render_template('index.html')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+    x1 = request.form.get("x","")
+    y1 = request.form.get("y","")
+
+    return render_template('result.html')
 

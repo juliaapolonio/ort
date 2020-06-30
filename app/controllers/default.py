@@ -31,11 +31,12 @@ def uploaded_file(filename):
 
     if request.method == 'POST':
         x = request.form['x1']
-        return redirect(url_for('process', x=x))
+        y = request.form['y1']
+        return redirect(url_for('process', x=x, y=y))
 
     return render_template('result.html')
 
-@app.route('/process/<x>', methods=["GET","POST"])
-def process(x):
-    return 'Hello World {}'.format(x)
+@app.route('/process/<x>:<y>', methods=["GET"])
+def process(x, y):
+    return 'Your coordinates are X={} and Y={}'.format(x,y)
 

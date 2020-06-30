@@ -1,6 +1,15 @@
 import math 
 import cv2
 import numpy as np
+import os
+import sys
+import subprocess
+
+FREECADPATH = '/home/julia/miniconda3/envs/flask-env/lib' 
+sys.path.append(FREECADPATH)
+
+import FreeCAD as App
+import Mesh as ms
 
 ALLOWED_EXTENSIONS = {'png', 'jpeg', 'jpg'}
 
@@ -60,3 +69,39 @@ def ratio(path):
 	return rt
 
     # Function to run CAD Module
+
+# Function to run CAD Module
+def script(heightSize, widthSize):
+
+    # Constraint values of variable quota
+    heightQuota = 46
+    widthQuota = 7
+
+    # Open file
+    App.openDocument(r"app/static/data/ortese_mao_freecad.FCStd")
+
+    # Open sketch
+    ActiveSketch = App.ActiveDocument.getObject('Sketch')
+
+    # Changes height
+    App.ActiveDocument.Sketch.setDatum(heightQuota, App.Units.Quantity(str(heightSize) + ' mm'))
+
+    # Changes width
+    App.ActiveDocument.Sketch.setDatum(widthQuota, App.Units.Quantity(str(widthSize) + ' mm'))
+
+    # Refresh
+    print("Running Refresh")
+    App.getDocument('ortese_mao_freecad').recompute()
+
+    # Saves .stl
+    __objs__= []
+    __objs__.append(App.getDocument("ortese_mao_freecad").getObject("Body"))
+    ms.export(__objs__,u"app/static/data/outputCAD.stl")
+
+
+# Function for running CAM module
+def runSlicer():
+
+    # Bash code for slicing stl model
+    subprocess.call("app/Slic3r/perl-local -I app/Slic3r/local-lib/lib/perl5 app/Slic3r/slic3r.pl" + 
+    " app/static/data/outputCAD.stl --load app/static/data/myconfig.ini --output app/static/data/saida.gcode", shell = True)

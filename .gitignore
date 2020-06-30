@@ -2,3 +2,10 @@
 *pyc
 __pycache__/
 *.py[cod]
+*.stl
+
+*.gcode
+
+__pycache__/
+
+Slic3r/

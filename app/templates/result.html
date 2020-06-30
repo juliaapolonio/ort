@@ -2,30 +2,45 @@
 <html lang="pt_br">
 <head>
 
+    <link rel="stylesheet" href="../static/css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ort3d</title>
 
     <script type="text/javascript" src="../static/js/get-coordinates-head.js"></script>
 
-
 </head>
 
 <body>
 
-<p><img src="../static/data/output.png" id="output" width="200" /></p>
+<div>
+    <p><img src="../static/data/output.png" id="output" width="50%" /></p>
 
-<script src="../static/js/get-coordinates-body.js" type="text/javascript"></script>
-        
-<img id="output" />
-<p>X:<span id="x"></span></p>
-<p>Y:<span id="y"></span></p>
+    <script src="../static/js/get-coordinates-body.js" type="text/javascript"></script>
+            
+    <img id="output" />
+</div>
 
-<form method=post enctype=multipart/form-data>
-    <input type="hidden" name="x1" id="x1">
-    <input type="hidden" name="y1" id="y1">
-    <input type=submit value="Salvar">
-</form>
+
+<div>
+    <button onclick="opt = 1">1</button>
+    <button onclick="opt = 2">2</button>
+    
+    <p>X:<span id="x1s"></span></p>
+    <p>Y:<span id="y1s"></span></p>
+    
+    <p>X:<span id="x2s"></span></p>
+    <p>Y:<span id="y2s"></span></p>
+    
+    <form method=post enctype=multipart/form-data>
+        <input type="hidden" name="x1" id="x1i">
+        <input type="hidden" name="y1" id="y1i">
+        <input type="hidden" name="x2" id="x2i">
+        <input type="hidden" name="y2" id="y2i">
+        <input type=submit value="Salvar">
+    </form>
+    
+</div>
 
 </body>
 </html>

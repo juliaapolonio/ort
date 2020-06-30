@@ -2,6 +2,7 @@
 <html lang="pt_br">
 <head>
 
+    <link rel="stylesheet" href="../static/css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ort</title>
@@ -10,15 +11,11 @@
 
 <body>
 
-    <form method=post enctype=multipart/form-data>
-        <input type="file"  accept="image/*" name="file" id="file">
-        <input type=submit value=Upload>
-        <p><img id="output" width="200" /></p>
+    <h2>Your coordinates are X={{ x }} and Y={{ y }}, X2={{ x2 }} and Y2={{ y2 }}. The distance between points is {{ d }}</h2>
+
+    <form action="/stl/" method="post">
+        <button name="stl" type="submit">Gerar Objeto 3D</button>
     </form>
-
-    <p><img id="output" width="200" /></p>
-
-    <script src="scripts/show-image.js"></script>
 
 </body>
 </html>

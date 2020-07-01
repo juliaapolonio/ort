@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, flash, request, redirect, url_for, session
+from flask import render_template, flash, request, redirect, url_for, session, send_file
 from werkzeug.utils import secure_filename
 import os
 from app.controllers.processing import allowed_file, img_click, script, runSlicer
@@ -42,9 +42,13 @@ def uploaded_file(filename):
 def process(x, y, x2, y2):
     d = img_click("app/static/data/output.png",x,y,x2,y2)
     script(d,d)
+    if request.method == 'POST':
+        return send_file('static/data/outputCAD.stl', as_attachment=True)
     return render_template('process.html', x=x, y=y, x2=x2, y2=y2, d=d)
 
 @app.route('/gcode/', methods=["GET","POST"])
 def gcode():
     runSlicer()
+    if request.method == 'POST':
+        return send_file('static/data/saida.gcode', as_attachment=True)
     return render_template('gcode.html')

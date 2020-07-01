@@ -37,7 +37,23 @@ function GetCoordinates(e)
     PosX = PosX - ImgPos[0];
     PosY = PosY - ImgPos[1];
 
-    document.getElementById("x").innerHTML = PosX;
-    document.getElementById("y").innerHTML = PosY;
+    if (opt == 2) {
+
+        document.getElementById("x2s").innerHTML = PosX;
+        document.getElementById("y2s").innerHTML = PosY;
+    
+        document.getElementById("x2i").setAttribute("value",PosX);
+        document.getElementById("y2i").setAttribute("value",PosY);
+    }
+
+    else if (opt == 1) {
+
+        document.getElementById("x1s").innerHTML = PosX;
+        document.getElementById("y1s").innerHTML = PosY;
+    
+        document.getElementById("x1i").setAttribute("value",PosX);
+        document.getElementById("y1i").setAttribute("value",PosY);
+    
+    }
 
 }

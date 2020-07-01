@@ -77,6 +77,9 @@ def script(heightSize, widthSize):
     heightQuota = 46
     widthQuota = 7
 
+    heightSize = int(heightSize)
+    widthSize = int(widthSize)
+
     # Open file
     App.openDocument(r"app/static/data/ortese_mao_freecad.FCStd")
 
